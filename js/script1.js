@@ -105,9 +105,9 @@ const TimerBox = document.querySelector('.timer'),
         modalWindow.classList.add("hide");
         modalWindow.classList.remove("show");
         document.body.style.overflow = "";
-        clearTimeout(timer);
+ //   clearTimeout(timer);
     }
-    const timer = setTimeout(openedModalWindow, 5000);
+   // const timer = setTimeout(openedModalWindow, 5000);
 
     modalOpen.forEach(item =>{
         item.addEventListener("click", openedModalWindow);
@@ -136,10 +136,114 @@ const TimerBox = document.querySelector('.timer'),
         }
     });
 
-    console.log(window.pageYOffset);
-    console.log(document.documentElement.clientHeight);
+// class for menu__item
+let contanier = document.querySelector('.menu__field .container');
 
-    console.log(document.documentElement.scrollHeight);
+contanier.innerHTML = "";
+
+
+
+// function addClass(element, className){
+//    element.classList.add(className);
+// }
+
+    class MenuCard {
+        constructor(src, alt, title, descr, price){
+            this.src = src;
+            this.alt = alt;
+            this.title = title;
+            this.descr = descr;
+            this.price = price;
+         }
+
+         addCard(block, className){
+             let div = document.createElement("div");
+             div.innerHTML = ` <div class="menu__item">
+             <img src=${this.src} alt=${this.alt}>
+             <h3 class="menu__item-subtitle">${this.title}</h3>
+             <div class="menu__item-descr">${this.descr}</div>
+             <div class="menu__item-divider"></div>
+             <div class="menu__item-price">
+                 <div class="menu__item-cost">Цена:</div>
+                 <div class="menu__item-total"><span>${this.price}</span> грн/день</div>
+             </div>
+         </div>`;
+         div.classList.add(className);
+         block.append(div);
+
+
+         } 
+
+    }
+
+
+//          addCart(block){
+//             let img = document.createElement("img");
+//             let titleH3 = document.createElement("h3");
+//             let descrDiv = document.createElement("div");
+//             const line = document.createElement("div");
+//             let priceDiv = document.createElement("div");
+//             let costDiv = document.createElement("div");
+//             let totalDiv = document.createElement("div");
+//             let totalSpan = document.createElement("span");
+
+
+//             img.src = this.src;
+//             img.alt = this.alt;
+//             block.append(img);
+//             addClass(titleH3, "menu__item-subtitle");
+//             titleH3.innerHTML = this.title;
+//             block.append(titleH3);
+//             addClass(descrDiv, "menu__item-descr");
+//             descrDiv.innerHTML = this.descr;
+//             block.append(descrDiv);
+//             addClass(line, "menu__item-divider");
+//             block.append(line);
+//             addClass(priceDiv, "menu__item-price");
+//             block.append(priceDiv);
+//             addClass(costDiv, "menu__item-cost");
+//             costDiv.innerHTML = "Цена:";
+//             priceDiv.append(costDiv);
+//             addClass(totalDiv, "menu__item-total");
+//             priceDiv.append(totalDiv);
+//             totalSpan.innerHTML = this.price;
+//             totalDiv.append(totalSpan);
+//             totalDiv.append(" грн/день");
+//                     }
+//     }
+
+
+
+     const fitnes = new MenuCard();
+     fitnes.src = "img/tabs/vegy.jpg";
+     fitnes.alt = "vegy";
+     fitnes.title = 'Меню "Фитнес"';
+     fitnes.descr = 'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!';
+     fitnes.price = "229";
+     fitnes.addCard(contanier, "menu__item");
+
+     const premium = new MenuCard();
+     premium.src = "img/tabs/elite.jpg";
+     premium.alt = "elite";
+     premium.title = 'Меню “Премиум”';
+     premium.descr = 'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!';
+     premium.price = "550";
+     premium.addCard(contanier, "menu__item");
+
+
+     const post = new MenuCard();
+     post.src = "img/tabs/post.jpg";
+     post.alt = "post";
+     post.title = 'Меню "Постное"';
+     post.descr = 'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.';
+     post.price = "430";
+     post.addCard(contanier, "menu__item");
+
+
+      
+    
+     
+
 
 
  });
