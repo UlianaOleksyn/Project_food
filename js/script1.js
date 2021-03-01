@@ -40,14 +40,15 @@ showContent();
 
     // Timer
 const TimerBox = document.querySelector('.timer'),
-       dedline = new Date('2021-03-01');
-    function GetTimeRemaining(endTime){
-        const t = Date.parse(endTime) - Date.parse(new Date()),
-              days = Math.floor(t / (1000 * 60 * 60 *24)),
-              hours = Math.floor(t / (1000 * 60 * 60) % 24),
-              minutes = Math.floor(t / ( 1000 * 60) % 60),
-              seconds = Math.floor(t / 1000 % 60);
+       dedline = new Date('2021-03-09');
+function GetTimeRemaining(endTime){
+    const t = Date.parse(endTime) - Date.parse(new Date()),
+          days = Math.floor(t / (1000 * 60 * 60 *24)),
+          hours = Math.floor(t / (1000 * 60 * 60) % 24),
+          minutes = Math.floor(t / ( 1000 * 60) % 60),
+          seconds = Math.floor(t / 1000 % 60);
 
+    if (t > 0) {
         return {
             'total': t,
             'days': days,
@@ -56,6 +57,15 @@ const TimerBox = document.querySelector('.timer'),
             'seconds': seconds
         };
     }
+    else{
+        return {
+            'days': 0,
+            'hours': 0,
+            'minutes': 0,
+            'seconds': 0
+        };
+    }
+}
     
     function GetZero(num){
         if (num >=0 && num < 10){
@@ -105,9 +115,9 @@ const TimerBox = document.querySelector('.timer'),
         modalWindow.classList.add("hide");
         modalWindow.classList.remove("show");
         document.body.style.overflow = "";
- //   clearTimeout(timer);
+    clearTimeout(timer);
     }
-   // const timer = setTimeout(openedModalWindow, 5000);
+    const timer = setTimeout(openedModalWindow, 5000);
 
     modalOpen.forEach(item =>{
         item.addEventListener("click", openedModalWindow);
